@@ -16,7 +16,7 @@ from pymongo.server_api import ServerApi
 application = Flask(__name__)
 application.secret_key = 'p26b5LZUEGuPkvekv6ZzkwInufEDyjfT'
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb+srv://rameshbhopale2021:root@cluster0.bzoxmna.mongodb.net/')
 # client = mongodb+srv://mongodb-database:Pass@1234@cluster0.rn15w9n.mongodb.net/
 db = client.mydatabase
 collection1 = db.donarData
