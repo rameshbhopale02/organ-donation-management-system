@@ -13,7 +13,6 @@ echo "mongodb-mongosh hold" | sudo dpkg --set-selections
 echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
 echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 ps --no-headers -o comm 1
-c
 
 sudo systemctl start mongod
 sudo systemctl daemon-reload
@@ -32,16 +31,16 @@ source venv/bin/activate
 git clone 'https://github.com/ramesh000002/flask-deployment.git'
 
 pip install -r requirement.txt
-python application.py
-sudo nano application.py
-cat application.py
+python app.py
+sudo nano app.py
+cat app.py
 
 pip install gunicorn
-gunicorn -b 0.0.0.0:8000 application:application
+gunicorn -b 0.0.0.0:8000 app:app
 
-sudo nano /etc/systemd/system/helloworld.service
+sudo nano /etc/systemd/system/flaskapp.service
 [Unit]
-Description=Gunicorn instance for a simple hello world app
+Description=Gunicorn instance for a simple flask app
 After=network.target
 [Service]
 User=ubuntu
@@ -53,8 +52,8 @@ Restart=always
 WantedBy=multi-user.target
 
 sudo systemctl daemon-reload
-sudo systemctl start helloworld
-sudo systemctl enable helloworld
+sudo systemctl start flaskapp
+sudo systemctl enable flaskapp
 
 curl localhost:8000
 sudo apt-get nginx
@@ -63,12 +62,12 @@ sudo systemctl enable nginx
 
 sudo nano /etc/nginx/sites-available/default
 
-upstream flaskhelloworld {
+upstream flaskapp {
     server 127.0.0.1:8000;
 }
 
 location / {
-    proxy_pass http://flaskhelloworld;
+    proxy_pass http://flaskapp;
 }
 
 sudo systemctl restart nginx
