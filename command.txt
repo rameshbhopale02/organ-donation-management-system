@@ -31,12 +31,12 @@ source venv/bin/activate
 git clone 'https://github.com/ramesh000002/flask-deployment.git'
 
 pip install -r requirement.txt
-python app.py
-sudo nano app.py
-cat app.py
+python3 application.py
+sudo nano application.py
+cat application.py
 
 pip install gunicorn
-gunicorn -b 0.0.0.0:8000 app:app
+gunicorn -b 0.0.0.0:8000 application:application
 
 sudo nano /etc/systemd/system/flaskapp.service
 [Unit]
@@ -56,7 +56,7 @@ sudo systemctl start flaskapp
 sudo systemctl enable flaskapp
 
 curl localhost:8000
-sudo apt-get nginx
+sudo apt-get intall nginx
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
