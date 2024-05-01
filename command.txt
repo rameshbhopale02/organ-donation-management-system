@@ -1,8 +1,8 @@
-ssh
-http           0.0.0.0 //0.
-https          0.0.0.0 //0.
-custom tcp     8080
-all tcp        0.0.0.0 //0.
+ssh            0.0.0.0 //0.  (ipV4 && ipV6)
+http           0.0.0.0 //0.     20
+https          0.0.0.0 //0.     200
+custom tcp      0.0.0.0 //0.    8080 
+all tcp        0.0.0.0 //0.     1-12000
 
 key :pem for ubuntu - :pek for putty
 
@@ -11,7 +11,10 @@ sudo su
 #mongodb
 1. sudo apt-get install gnupg curl
 
-2. curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \zsudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \ --dearmor
+2. curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+
 3. echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
 4. sudo apt-get update
@@ -24,7 +27,6 @@ echo "mongodb-org-server hold" | sudo dpkg --set-selections
 echo "mongodb-mongosh hold" | sudo dpkg --set-selections
 echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
 echo "mongodb-org-tools hold" | sudo dpkg --set-selections
-ps --no-headers -o comm 1
 
 7. sudo systemctl start mongod
 
@@ -38,8 +40,12 @@ ps --no-headers -o comm 1
 
 12. sudo systemctl restart mongod
 
-13. mongosh
+13. mongosh   --- exit()
 
+setup command for mongodb globally accesble (monoshell setup - copy connection string)
+1. sudo vim /etc/mongod.conf
+2. modify pid : 0.0.0.0
+3. udo service mongod restart
 
 14. sudo apt-get update
 
@@ -47,16 +53,15 @@ ps --no-headers -o comm 1
 
 16. sudo apt-get install python3-pip
 
-17. python3 -m venv venv
+17. git clone 'https://github.com/ramesh000002/flask-deployment.git'
 
-18. source venv/bin/activate
+18.  python3 -m venv venv
 
 19. pip install -r requirements.txt
 
-19. git clone 'https://github.com/ramesh000002/flask-deployment.git'
+19. source venv/bin/activate
 
-
-20. python3 application.py
+20. python3 application.py    (modify connection string monogodb)
 
 21. sudo nano application.py
 
