@@ -66,10 +66,10 @@ Make sure you have the following installed on your machine:
     virtualenv venv
     venv\Scripts\Activate
 3.  **Install the Required Libraries**:
-   ```bash
-   pip install -r requirements.txt
+      ```bash
+      pip install -r requirements.txt
 4.  **Run the Application**:
-   ```bash
-    python app.py
+      ```bash
+       python app.py
 
    
