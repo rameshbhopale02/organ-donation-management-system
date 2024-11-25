@@ -133,6 +133,45 @@ Below is a list of key API endpoints used in the backend to manage and access th
       ```bash
        python app.py
 
+## Screenshots
+
+Here are the screenshots for various sections of the application:
+
+### Home Page
+This is a screenshot of the application's home page.
+
+![Home Page](static/results/home_page.png)
+
+### Admin Login
+The admin login interface, where administrators can access the admin panel.
+
+![Admin Login](static/results/admin_login.png)
+
+### Create User
+Form to create a new user account.
+
+![Create User](static/results/create_user.png)
+
+### Donor Form
+Form for registering as a donor.
+
+![Donor Form](static/results/donor_form.png)
+
+### Patient Form
+Form for registering a patient in need of an organ.
+
+![Patient Form](static/results/patient_form.png)
+
+### Query Form
+Interface to submit queries related to organ donation.
+
+![Query Form](static/results/query_form.png)
+
+### Admin Panel
+The admin panel for managing users, donors, and organ allocation.
+
+![Admin Panel](static/results/admin_panel.png)
+
 
 
    
