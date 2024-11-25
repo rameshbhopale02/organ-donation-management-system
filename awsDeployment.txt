@@ -112,11 +112,11 @@ WantedBy=multi-user.target
 
 8. sudo apt-get intall nginx
 
-31. sudo systemctl start nginx
+9. sudo systemctl start nginx
 
-32. sudo systemctl enable nginx
+10. sudo systemctl enable nginx
 
-33. sudo nano /etc/nginx/sites-available/default
+11. sudo nano /etc/nginx/sites-available/default
 
 upstream flaskapp {
     server 127.0.0.1:8000;
@@ -126,4 +126,4 @@ location / {
     proxy_pass http://flaskapp;
 }
 
-34. sudo systemctl restart nginx
+12. sudo systemctl restart nginx
