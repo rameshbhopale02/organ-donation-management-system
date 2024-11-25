@@ -1,14 +1,18 @@
+### security group setup
 ssh            0.0.0.0 //0.  (ipV4 && ipV6)
 http           0.0.0.0 //0.     20
 https          0.0.0.0 //0.     200
-custom tcp      0.0.0.0 //0.    8080 
+custom tcp     0.0.0.0 //0.    8080 
 all tcp        0.0.0.0 //0.     1-12000
 
-key :pem for ubuntu - :pek for putty
+### store secerate key 
+.pem for ubuntu
+.pek for putty
 
+### swith to super user
 sudo su
 
-#mongodb
+### setup mongodb in aws
 1. sudo apt-get install gnupg curl
 
 2. curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
@@ -17,7 +21,7 @@ sudo su
 
 3. echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
-4. sudo apt-get update
+4. sudo apt-get update   ### load updated pakages
 
 5. sudo apt-get install -y mongodb-org
 
@@ -42,38 +46,49 @@ echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
 13. mongosh   --- exit()
 
-setup command for mongodb globally accesble (monoshell setup - copy connection string)
+### Connect to mongodb Atlas to make database globally accessible (monoshell setup - copy connection string)
+
 1. sudo vim /etc/mongod.conf
 2. modify pid : 0.0.0.0
-3. udo service mongod restart
+3. sudo service mongod restart
 
-14. sudo apt-get update
+### reload updated pakages
 
-15. sudo apt-get install python3-venv
+1. sudo apt-get update
 
-16. sudo apt-get install python3-pip
+### clone repository to ubuntu shell
 
-17. git clone 'https://github.com/ramesh000002/flask-deployment.git'
+1.  git clone 'https://github.com/ramesh000002/flask-deployment.git'
 
-18.  python3 -m venv venv
+### Setup virtual environment in linux based system (ubuntu)
 
-19. pip install -r requirements.txt
+1. sudo apt-get install python3-venv
+2. sudo apt-get install python3-pip
+3. python3 -m venv venv
+4. source venv\Scripts\Activate
 
-19. source venv/bin/activate
+### install required libraries in virtual environment
 
-20. python3 application.py    (modify connection string monogodb)
+1. pip install -r requirements.txt
 
-21. sudo nano application.py
+### run application
 
-22. cat application.py
+1. python3 application.py    (modify connection string monogodb)
 
-23. pip install gunicorn
+### if required (modify in flask)
 
-24. gunicorn -b 0.0.0.0:8000 application:application
+1. sudo nano application.py (like modify in connection string if not done)
+2. cat application.py      ### verify changes
 
-25. sudo nano /etc/systemd/system/flaskapp.service
-(change path according pwd)
+### deploymeent
 
+1. pip install gunicorn
+
+2. gunicorn -b 0.0.0.0:8000 application:application
+
+3. sudo nano /etc/systemd/system/flaskapp.service   ### (change path according current path)
+
+*///
 [Unit]
 Description=Gunicorn instance for a simple flask app
 After=network.target
@@ -85,16 +100,17 @@ ExecStart=/home/ubuntu/flask-deployment/venv/bin/gunicorn -b localhost:8000 appl
 Restart=always
 [Install]
 WantedBy=multi-user.target
+///*
 
-26. sudo systemctl daemon-reload
+4. sudo systemctl daemon-reload
 
-27 sudo systemctl start flaskapp
+5 sudo systemctl start flaskapp
 
-28. sudo systemctl enable flaskapp
+6. sudo systemctl enable flaskapp
 
-29. curl localhost:8000
+7. curl localhost:8000
 
-30. sudo apt-get intall nginx
+8. sudo apt-get intall nginx
 
 31. sudo systemctl start nginx
 
