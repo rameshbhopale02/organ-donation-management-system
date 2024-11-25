@@ -11,6 +11,7 @@ This project is a web-based application designed to facilitate the organ donatio
 - [Installation](#installation)
 - [API Endpoints](#api-endpoints)
 - [Deployment](#deployment)
+- [Screenshots](#Result-Sc)
 
 
 ## Project Overview
