@@ -1,4 +1,4 @@
-### security group setupp
+### security group setup
 ssh            0.0.0.0 //0.  (ipV4 && ipV6)
 http           0.0.0.0 //0.     20
 https          0.0.0.0 //0.     200
