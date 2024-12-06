@@ -126,4 +126,4 @@ location / {
     proxy_pass http://flaskapp;
 }
 
-12. sudo systemctl restart nginxx
+12. sudo systemctl restart nginx
