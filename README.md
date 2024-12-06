@@ -1,4 +1,4 @@
-# Organ Donation Management Systemm
+# Organ Donation Management System
 
 This project is a web-based application designed to facilitate the organ donation and allocation process. The system manages donor registrations, patient registrations, and organ allocations. It includes an admin panel to oversee and manage the entire process efficiently. The application is built using HTML, CSS, JavaScript for the frontend, Flask (Python) for the backend, and MongoDB for data storage. It is deployed on AWS EC2 for cloud hosting.
 
